@@ -6,6 +6,7 @@ import cereal.messaging as messaging
 from openpilot.selfdrive.selfdrived.events import Events
 from openpilot.common.realtime import DT_DMON
 from openpilot.common.filter_simple import FirstOrderFilter
+from openpilot.common.params import Params
 from openpilot.common.stat_live import RunningStatFilter
 from openpilot.common.transformations.camera import DEVICE_CAMERAS
 
@@ -142,7 +143,9 @@ class DriverMonitoring:
     self.ee1_calibrated = False
     self.ee2_calibrated = False
 
+    self.params = Params()
     self.always_on = always_on
+    self.too_distracted = self.params.get_bool("DriverTooDistracted")
     self.distracted_types = []
     self.driver_distracted = False
     self.driver_distraction_filter = FirstOrderFilter(0., self.settings._DISTRACTED_FILTER_TS, self.settings._DT_DMON)
@@ -309,6 +312,11 @@ class DriverMonitoring:
     if self.terminal_alert_cnt >= self.settings._MAX_TERMINAL_ALERTS or \
        self.terminal_time >= self.settings._MAX_TERMINAL_DURATION or \
        self.always_on and self.awareness <= self.threshold_prompt:
+      if not self.too_distracted:
+        self.params.put_bool("DriverTooDistracted", True)
+      self.too_distracted = True
+
+    if self.too_distracted:
       self.current_events.add(EventName.tooDistracted)
 
     always_on_valid = self.always_on and not wrong_gear
