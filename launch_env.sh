@@ -9,5 +9,5 @@ export VECLIB_MAXIMUM_THREADS=1
 if [ -z "$AGNOS_VERSION" ]; then
   export AGNOS_VERSION="12.4"
 fi
-export FINGERPRINT="LEXUS_GS_F"
+export FINGERPRINT="LEXUS_LS"
 export STAGING_ROOT="/data/safe_staging"
