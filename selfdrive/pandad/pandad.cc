@@ -491,6 +491,14 @@ void pandad_main_thread(std::vector<std::string> serials) {
     }
   }
 
+  //The internal panda will always be serial[0]. Make sure serial[1] panda is not any of the ones below.
+  //serial[1] panda should be always be the one connected to the driving bus. If not swap them
+  std::string panda_1_str;
+  panda_1_str = serials[1];
+  LOGW("Panda1: %s", panda_1_str.c_str());
+  if ( (panda_1_str == "0f003e000350503248393120") || (panda_1_str == "28001b001751323430373133") )
+    std::swap(serials[1], serials[2]);
+
   std::string serials_str;
   for (int i = 0; i < serials.size(); i++) {
     serials_str += serials[i];
