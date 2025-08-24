@@ -11,5 +11,5 @@ if [ -z "$AGNOS_VERSION" ]; then
 fi
 export SKIP_FW_QUERY=1
 export FINGERPRINT="LEXUS_LS"
-export DEBUG=1
+export DEBUG=0
 export STAGING_ROOT="/data/safe_staging"
