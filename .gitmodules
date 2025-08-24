@@ -1,6 +1,7 @@
 [submodule "panda"]
   path = panda
-  url = ../../commaai/panda.git
+  url = https://github.com/am4513-blip/panda.git
+  branch = LexusLS_panda_lat_long_sng
 [submodule "opendbc"]
   path = opendbc_repo
   url = https://github.com/am4513-blip/opendbc_repo.git
