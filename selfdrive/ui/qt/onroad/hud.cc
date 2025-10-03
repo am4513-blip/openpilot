@@ -91,7 +91,7 @@ void HudRenderer::drawSetSpeed(QPainter &p, const QRect &surface_rect) {
   p.setFont(InterFont(90, QFont::Bold));
   p.setPen(set_speed_color);
   //p.drawText(set_speed_rect.adjusted(0, 77, 0, 0), Qt::AlignTop | Qt::AlignHCenter, setSpeedStr);
-  p.drawText(surface_rect.center().x() - 60, 900, setSpeedStr);
+  p.drawText(surface_rect.center().x() - 32, 950, setSpeedStr);
 }
 
 void HudRenderer::drawCurrentSpeed(QPainter &p, const QRect &surface_rect) {
